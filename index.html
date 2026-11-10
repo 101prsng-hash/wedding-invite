@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | [Your Names]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8b263e;
+            --accent-gold: #c5a059;
+            --bg-color: #fcf9f5;
+            --text-dark: #2c2c2c;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(to bottom, #f3eae1, var(--bg-color));
+        }
+
+        .ganesha {
+            width: 80px;
+            margin-bottom: 10px;
+            opacity: 0.85;
+        }
+
+        .shree {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .couple-names {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            border: 1px solid #eee;
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .event-grid {
+            display: grid;
+            gap: 20px;
+            text-align: left;
+        }
+
+        /* Photo Gallery Styling */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* RSVP Form Styling */
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .rsvp-form input, 
+        .rsvp-form select, 
+        .rsvp-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .rsvp-form button {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .rsvp-form button:hover {
+            background: #6e1d30;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #f3eae1;
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+
+        a.btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://img.icons8.com/ios-filled/100/c5a059/ganesha.png" alt="Ganesha" class="ganesha">
+        <p class="shree">‖ Shree Ganeshaya Namah ‖</p>
+        <p class="subtitle">Together with their families, we cordially invite you to celebrate our wedding</p>
+        <h1 class="couple-names">[Your Name] &amp; [Partner's Name]</h1>
+        <p><i>Save the Date: 24th November 2026</i></p>
+    </header>
+
+    <!-- Photo Gallery Section -->
+    <section>
+        <h2>Moments Together</h2>
+        <p style="color: #666; margin-bottom: 10px;">Captured memories on our journey</p>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt="Gallery Photo 1">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500" alt="Gallery Photo 2">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500" alt="Gallery Photo 3">
+        </div>
+    </section>
+
+    <!-- Events Schedule & Venue Maps -->
+    <section>
+        <h2>Events &amp; Venues</h2>
+        <div class="event-grid">
+            <div class="card">
+                <h3>Mehendi Ceremony</h3>
+                <p>An evening filled with vibrant colors, music, and joy.</p>
+                <p><strong>Date:</strong> Sunday, November 22, 2026</p>
+                <p><strong>Time:</strong> 6:00 PM onwards</p>
+                <p><strong>Venue:</strong> [Insert Venue Name, City]</p>
+            </div>
+
+            <div class="card">
+                <h3>Sangeet &amp; Ring Ceremony</h3>
+                <p>Dance, music, and celebration to kick off the festivities.</p>
+                <p><strong>Date:</strong> Monday, November 23, 2026</p>
+                <p><strong>Time:</strong> 6:00 PM onwards</p>
+                <p><strong>Venue:</strong> [Insert Banquet Hall, City]</p>
+            </div>
+
+            <div class="card">
+                <h3>Wedding Ceremony</h3>
+                <p>Exchange of vows and stepping into a lifetime together.</p>
+                <p><strong>Date:</strong> Tuesday, November 24, 2026</p>
+                <p><strong>Time:</strong> 7:00 PM onwards</p>
+                <p><strong>Venue:</strong> Carnival Banquet Hall, Ranchi</p>
+                <a href="https://maps.google.com" target="_blank" class="btn">Get Directions ↗</a>
+                
+                <!-- Google Maps Embed -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3662.678783421598!2d85.3090!3d23.3630!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDIxJzQ2LjgiTiA4NcKwMTgnMzIuNCJF!5e0!3m2!1sen!2sin!4v1600000000000" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section>
+        <h2>RSVP</h2>
+        <p style="color: #666;">Please let us know if you can make it by November 15, 2026</p>
+        <div class="card">
+            <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Thank you for confirming your presence!');">
+                <input type="text" placeholder="Your Full Name" required>
+                <select required>
+                    <option value="" disabled selected>Will you be attending?</option>
+                    <option value="yes">Joyfully Accept</option>
+                    <option value="no">Regretfully Decline</option>
+                </select>
+                <input type="number" placeholder="Number of Guests" min="1" max="10" required>
+                <textarea rows="3" placeholder="Warm wishes or dietary notes..."></textarea>
+                <button type="submit">Send Confirmation</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>With Love,</p>
+        <h2>[Your Name] &amp; [Partner's Name]</h2>
+        <p style="font-size: 0.9rem; margin-top: 10px; font-family: 'Plus Jakarta Sans', sans-serif;">#YourHashtagForever</p>
+    </footer>
+
+</body>
+</html>
