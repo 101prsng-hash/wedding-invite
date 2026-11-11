@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | [Your Names]</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Wedding Invitation | Ritu &amp; Prasang</title>
+    <meta property="og:image" content="https://your-live-url.com/pine.jpg">
+    <meta property="og:title" content="Wedding Invitation | Ritu & Prasang">
+    <meta property="og:description" content="Join us in celebrating our wedding on 14th December 2026!">
+    
+    <!-- Google Fonts Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-color: #8b263e;
@@ -26,45 +34,353 @@
             background-color: var(--bg-color);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
         }
 
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
         }
 
+        /* Full Screen Interactive Splash Overlay with Background Image */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('Ganesha.jpg');
+            background-size: cover;
+            background-position: center center;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            text-align: center;
+        }
+
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Cursive Invocation Phrase */
+        .shree-overlay-splash {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 3.2rem;
+            color: #f3d482;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            margin-top: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Tap to Proceed Button */
+        .proceed-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6e1d30 100%);
+            color: #ffffff;
+            border: 2px solid var(--accent-gold);
+            padding: 14px 35px;
+            font-size: 1.15rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            animation: bounceBtn 2s infinite;
+            margin-bottom: 30px;
+        }
+
+        .proceed-btn:hover {
+            transform: scale(1.05);
+            background: var(--accent-gold);
+            color: var(--primary-color);
+        }
+
+        @keyframes bounceBtn {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Main Invitation Content */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease 0.3s;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+        }
+
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 25px 15px;
             background: linear-gradient(to bottom, #f3eae1, var(--bg-color));
         }
 
-        .ganesha {
-            width: 80px;
-            margin-bottom: 10px;
-            opacity: 0.85;
-        }
-
-        .shree {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .couple-names {
+        /* Slider Title */
+        .slider-title {
+            font-family: 'Great Vibes', cursive !important;
             font-size: 3rem;
             color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* --- COUPLE CAROUSEL SLIDER STYLES --- */
+        .carousel-section {
+            width: 100%;
+            max-width: 560px;
+            margin: 10px auto 30px auto;
+            position: relative;
+        }
+
+        .carousel-viewport {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding-left: calc(12% - 8px); 
+            align-items: center;
+        }
+
+        .carousel-slide {
+            flex: 0 0 76%;
+            margin: 0 8px;
+            border: 3px double var(--accent-gold);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #f7f3ee;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0.65;
+            transform: scale(0.92);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 10px 25px rgba(139, 38, 62, 0.25);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 290px;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-nav-btn {
+            position: absolute;
+            top: 54%;
+            transform: translateY(-60%);
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--primary-color);
+            border: 1px solid var(--accent-gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+        }
+
+        .carousel-nav-btn:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .carousel-nav-btn.prev { left: 5px; }
+        .carousel-nav-btn.next { right: 5px; }
+
+        /* Carousel Pagination Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #d4b580;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .dot.active {
+            background: var(--primary-color);
+            opacity: 1;
+            width: 24px;
+            border-radius: 10px;
+        }
+
+        /* Intro Card Container with Park Background */
+        .intro-card {
+            position: relative;
+            border: 4px double var(--accent-gold);
+            border-radius: 12px;
+            padding: 40px 25px;
+            margin: 25px auto;
+            max-width: 500px;
+            min-height: 80vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('park.JPG');
+            background-size: cover;
+            background-position: center center;
+            
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .intro-card .intro-text {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 2.2rem;
+            color: #f3d482;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        .intro-card .bride-highlight {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 3.4rem;
+            color: #ffffff;
+            font-weight: 400;
+            margin-top: 10px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Couple Details Card */
+        .couple-card {
+            position: relative;
+            border: 4px double var(--accent-gold);
+            border-radius: 12px;
+            padding: 40px 20px;
+            margin: 25px auto;
+            max-width: 500px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('hands.JPG');
+            background-size: cover;
+            background-position: center;
+            
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .couple-card .couple-names {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 3.2rem;
+            color: #ffffff;
+            font-weight: 400;
+            margin: 10px 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .couple-card .parents-name {
+            font-size: 0.95rem;
+            color: #f0f0f0; 
+            font-weight: 400;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .couple-card .with-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #f3d482;
             margin: 15px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 30px;
+        /* Save the Date Card */
+        .save-date-card {
+            position: relative;
+            border: 4px double var(--accent-gold);
+            border-radius: 12px;
+            padding: 40px 25px;
+            margin: 25px auto;
+            max-width: 500px;
+            min-height: 80vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('forehead.jpg');
+            background-size: cover;
+            background-position: center center;
+            
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #ffffff;
         }
 
+        .save-date-card .save-date-title {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 3.5rem;
+            color: #f3d482;
+            font-weight: 400;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        .save-date-card .save-date-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Events Section & Cards */
         section {
             padding: 50px 20px;
             max-width: 800px;
@@ -72,200 +388,647 @@
             text-align: center;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: left;
-            border: 1px solid #eee;
-        }
-
-        .card h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
         .event-grid {
             display: grid;
-            gap: 20px;
+            gap: 25px;
             text-align: left;
         }
 
-        /* Photo Gallery Styling */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+        /* Baby Pink and Gold Cards */
+        .event-card, .pet-card, .family-card, .blessing-card {
+            border: 4px double var(--accent-gold);
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe6eb 100%);
+            border-radius: 12px;
+            padding: 35px 20px;
+            margin: 10px 0;
+            box-shadow: 0 6px 20px rgba(139, 38, 62, 0.08);
+            text-align: center;
         }
 
-        .gallery-grid img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        .event-card .event-title, .pet-card .pet-title, .family-card .family-title {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 3.2rem;
+            color: var(--primary-color);
+            font-weight: 400;
+            margin-bottom: 8px;
         }
 
-        .gallery-grid img:hover {
-            transform: scale(1.03);
+        .event-card .event-subtitle {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: -2px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        /* RSVP Form Styling */
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
+        .family-subtitle, .pet-subtitle {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-top: 5px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            transition: opacity 0.3s ease;
         }
 
-        .rsvp-form input, 
-        .rsvp-form select, 
-        .rsvp-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
+        /* Closing Blessing Card Typography */
+        .blessing-text {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 2.4rem;
+            color: var(--primary-color);
+            font-weight: 400;
+            line-height: 1.4;
+            margin: 10px 0 25px 0;
+            padding: 0 10px;
+        }
+
+        .sanskrit-hymn {
+            font-family: 'Tiro Devanagari Sanskrit', 'Plus Jakarta Sans', serif;
+            font-size: 1.25rem;
+            color: #721c24;
+            font-weight: 600;
+            line-height: 1.8;
+            padding: 18px 15px;
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px dashed var(--accent-gold);
             border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
+            display: inline-block;
+            width: 100%;
+            max-width: 480px;
         }
 
-        .rsvp-form button {
+        .event-card .event-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .event-card .event-time {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .event-card .event-details {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .event-card .event-details strong {
+            color: var(--primary-color);
+        }
+
+        .event-card .venue-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* WIDE LANDSCAPE FAMILY CAROUSEL STYLES */
+        .family-card .family-carousel-section {
+            width: 100%;
+            max-width: 600px;
+            margin: 5px auto 10px auto;
+            position: relative;
+        }
+
+        .family-card .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding-left: calc(8% - 6px);
+            align-items: center;
+        }
+
+        .family-card .carousel-slide {
+            flex: 0 0 84%;
+            margin: 0 6px;
+            border: 3px double var(--accent-gold);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f7f3ee;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0.65;
+            transform: scale(0.94);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .family-card .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 8px 22px rgba(139, 38, 62, 0.22);
+        }
+
+        .family-card .carousel-slide img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* VERTICAL-FRIENDLY PET CAROUSEL STYLES */
+        .pet-card .pet-carousel-section {
+            width: 100%;
+            max-width: 480px;
+            margin: 5px auto 10px auto;
+            position: relative;
+        }
+
+        .pet-card .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding-left: calc(15% - 8px);
+            align-items: center;
+        }
+
+        .pet-card .carousel-slide {
+            flex: 0 0 70%;
+            margin: 0 8px;
+            border: 3px double var(--accent-gold);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f7f3ee;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0.65;
+            transform: scale(0.92);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pet-card .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 8px 22px rgba(139, 38, 62, 0.22);
+        }
+
+        .pet-card .carousel-slide img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Compact Map Container */
+        .map-container {
+            width: 100%;
+            max-width: 420px;
+            height: 170px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto 0 auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* Buttons & Utility */
+        a.btn {
+            display: inline-block;
             background: var(--primary-color);
             color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 5px;
+            font-size: 0.95rem;
+            font-weight: 500;
             transition: background 0.3s ease;
         }
 
-        .rsvp-form button:hover {
+        a.btn:hover {
             background: #6e1d30;
         }
 
-        .map-container {
-            width: 100%;
-            height: 280px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 15px;
-            border: 1px solid #ddd;
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #ffffff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.1);
         }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 40px 20px;
             background: #f3eae1;
             color: var(--primary-color);
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
         }
-
-        a.btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 15px;
-            font-size: 0.9rem;
-        }
     </style>
 </head>
-<body>
+<body class="no-scroll">
 
-    <header>
-        <img src="https://img.icons8.com/ios-filled/100/c5a059/ganesha.png" alt="Ganesha" class="ganesha">
-        <p class="shree">‖ Shree Ganeshaya Namah ‖</p>
-        <p class="subtitle">Together with their families, we cordially invite you to celebrate our wedding</p>
-        <h1 class="couple-names">[Your Name] &amp; [Partner's Name]</h1>
-        <p><i>Save the Date: 24th November 2026</i></p>
-    </header>
+    <!-- Background Audio Elements (.m4a support) -->
+    <audio id="splashAudio" src="splash-music.m4a" loop></audio>
+    <audio id="inviteAudio" src="invite-music.m4a" loop></audio>
 
-    <!-- Photo Gallery Section -->
-    <section>
-        <h2>Moments Together</h2>
-        <p style="color: #666; margin-bottom: 10px;">Captured memories on our journey</p>
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt="Gallery Photo 1">
-            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500" alt="Gallery Photo 2">
-            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500" alt="Gallery Photo 3">
-        </div>
-    </section>
+    <!-- Interactive Ganesha Splash Screen -->
+    <div id="splash-screen">
+        <h1 class="shree-overlay-splash">Om Shree Ganeshaya Namah</h1>
+        <button class="proceed-btn" onclick="openInvitation()">Tap to Open Invitation ✨</button>
+    </div>
 
-    <!-- Events Schedule & Venue Maps -->
-    <section>
-        <h2>Events &amp; Venues</h2>
-        <div class="event-grid">
-            <div class="card">
-                <h3>Mehendi Ceremony</h3>
-                <p>An evening filled with vibrant colors, music, and joy.</p>
-                <p><strong>Date:</strong> Sunday, November 22, 2026</p>
-                <p><strong>Time:</strong> 6:00 PM onwards</p>
-                <p><strong>Venue:</strong> [Insert Venue Name, City]</p>
-            </div>
-
-            <div class="card">
-                <h3>Sangeet &amp; Ring Ceremony</h3>
-                <p>Dance, music, and celebration to kick off the festivities.</p>
-                <p><strong>Date:</strong> Monday, November 23, 2026</p>
-                <p><strong>Time:</strong> 6:00 PM onwards</p>
-                <p><strong>Venue:</strong> [Insert Banquet Hall, City]</p>
-            </div>
-
-            <div class="card">
-                <h3>Wedding Ceremony</h3>
-                <p>Exchange of vows and stepping into a lifetime together.</p>
-                <p><strong>Date:</strong> Tuesday, November 24, 2026</p>
-                <p><strong>Time:</strong> 7:00 PM onwards</p>
-                <p><strong>Venue:</strong> Carnival Banquet Hall, Ranchi</p>
-                <a href="https://maps.google.com" target="_blank" class="btn">Get Directions ↗</a>
+    <!-- Main Invitation Body Content -->
+    <div id="main-content">
+        <header>
+            <!-- Couple Photo Slider -->
+            <div class="carousel-section">
+                <h2 class="slider-title">Meet the Couple</h2>
+                <button class="carousel-nav-btn prev" onclick="moveSlide(-1, 'couple')">❮</button>
+                <button class="carousel-nav-btn next" onclick="moveSlide(1, 'couple')">❯</button>
                 
-                <!-- Google Maps Embed -->
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3662.678783421598!2d85.3090!3d23.3630!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDIxJzQ2LjgiTiA4NcKwMTgnMzIuNCJF!5e0!3m2!1sen!2sin!4v1600000000000" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
+                <div class="carousel-viewport" id="coupleViewport">
+                    <div class="carousel-track" id="coupleTrack">
+                        <div class="carousel-slide active">
+                            <img src="pine.jpg" alt="Pine Photo" onerror="handleImageError(this, 'pine')">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="ghaghri.jpg" alt="Ghaghri Photo" onerror="handleImageError(this, 'ghaghri')">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="kaash2.jpg" alt="Kaash Photo" onerror="handleImageError(this, 'kaash2')">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="looks.jpg" alt="Looks Photo" onerror="handleImageError(this, 'looks')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-dots" id="coupleDots">
+                    <span class="dot active" onclick="goToSlide(0, 'couple')"></span>
+                    <span class="dot" onclick="goToSlide(1, 'couple')"></span>
+                    <span class="dot" onclick="goToSlide(2, 'couple')"></span>
+                    <span class="dot" onclick="goToSlide(3, 'couple')"></span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- RSVP Section -->
-    <section>
-        <h2>RSVP</h2>
-        <p style="color: #666;">Please let us know if you can make it by November 15, 2026</p>
-        <div class="card">
-            <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Thank you for confirming your presence!');">
-                <input type="text" placeholder="Your Full Name" required>
-                <select required>
-                    <option value="" disabled selected>Will you be attending?</option>
-                    <option value="yes">Joyfully Accept</option>
-                    <option value="no">Regretfully Decline</option>
-                </select>
-                <input type="number" placeholder="Number of Guests" min="1" max="10" required>
-                <textarea rows="3" placeholder="Warm wishes or dietary notes..."></textarea>
-                <button type="submit">Send Confirmation</button>
-            </form>
-        </div>
-    </section>
+            <!-- Slide 2: Intro Card -->
+            <div class="intro-card">
+                <p class="intro-text">
+                    Together with their families, we cordially invite you to celebrate the wedding ceremony of
+                </p>
+                <h1 class="bride-highlight"></h1>
+            </div>
 
-    <footer>
-        <p>With Love,</p>
-        <h2>[Your Name] &amp; [Partner's Name]</h2>
-        <p style="font-size: 0.9rem; margin-top: 10px; font-family: 'Plus Jakarta Sans', sans-serif;">#YourHashtagForever</p>
-    </footer>
+            <!-- Slide 3: Couple Card -->
+            <div class="couple-card">
+                <!-- Bride -->
+                <h1 class="couple-names">Ritu Rani</h1>
+                <p class="parents-name">D/o Smt. Ragini Kumari &amp; Shri Amar Shanakar Singh</p>
+                
+                <p class="with-text">— with —</p>
+                
+                <!-- Groom -->
+                <h1 class="couple-names">Prasang Ranjan</h1>
+                <p class="parents-name">S/o Smt. Sangita Ranjan &amp; Late Prabhat Ranjan</p>
+            </div>
 
+            <!-- Slide 4: Save the Date Card -->
+            <div class="save-date-card">
+                <h1 class="save-date-title">Save the Date</h1>
+                <p class="save-date-text">14th December 2026</p>
+            </div>
+        </header>
+
+        <!-- Events Schedule & Venue Maps -->
+        <section>
+            <h2>Events &amp; Venues</h2>
+            <div class="event-grid">
+                
+                <!-- Wedding Day Card -->
+                <div class="event-card">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--primary-color); font-weight: 700; margin-bottom: 4px;">Wedding Day</h3>
+                    <p class="event-subtitle">The exchange of varmalas, taking of vows and stepping into the beginning of togetherness</p>
+                    <p class="event-date">Monday, 14th December 2026</p>
+                    
+                    <div class="event-details">
+                        <p><strong>Venue:</strong> <span class="venue-name">Vioray Central Garden</span></p>
+                        <p>Williams Town, Deoghar</p>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=Vioray+Central+Garden+Williams+Town+Deoghar" target="_blank" class="btn">Get Directions ↗</a>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3637.288!2d86.695!3d24.482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDI8JzU1LjIiTiA8NsKwNDEnNDIgMCJF!5e0!3m2!1sen!2sin!4v1600000000000" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Reception Card -->
+                <div class="event-card">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--primary-color); font-weight: 700; margin-bottom: 4px;">Reception</h3>
+                    <p class="event-subtitle">Welcoming of the bride and feast with family and friends</p>
+                    <p class="event-date">Friday, 18th December 2026</p>
+                    <p class="event-time">7:00 PM onwards</p>
+                    
+                    <div class="event-details">
+                        <p><strong>Venue:</strong> <span class="venue-name">Hotel Sabhekar</span></p>
+                        <p>Sisai Road, Gumla</p>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=Hotel+Sabhekar+Sisai+Road+Gumla" target="_blank" class="btn">Get Directions ↗</a>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.5!2d84.54!3d23.04!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAyJzI0LjAiTiA8NMKwMzInMjQuMCJF!5e0!3m2!1sen!2sin!4v1600000000000" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Meet Our Families Card -->
+                <div class="family-card">
+                    <h3 class="family-title">Meet Our Families</h3>
+                    <p class="family-subtitle" id="familySubtitle">Groom's Side</p>
+                    
+                    <div class="family-carousel-section">
+                        <button class="carousel-nav-btn prev" onclick="moveSlide(-1, 'family')">❮</button>
+                        <button class="carousel-nav-btn next" onclick="moveSlide(1, 'family')">❯</button>
+                        
+                        <div class="carousel-viewport" id="familyViewport">
+                            <div class="carousel-track" id="familyTrack">
+                                <div class="carousel-slide active">
+                                    <img src="family1.jpg" alt="Groom's Family" onerror="handleImageError(this, 'family1')">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="family2.jpg" alt="Bride's Family" onerror="handleImageError(this, 'family2')">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-dots" id="familyDots">
+                            <span class="dot active" onclick="goToSlide(0, 'family')"></span>
+                            <span class="dot" onclick="goToSlide(1, 'family')"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meet Our Pets Card -->
+                <div class="pet-card">
+                    <h3 class="pet-title">Meet Our Pets</h3>
+                    <p class="pet-subtitle" id="petSubtitle">Loki, Groom's Side</p>
+                    
+                    <div class="pet-carousel-section">
+                        <button class="carousel-nav-btn prev" onclick="moveSlide(-1, 'pet')">❮</button>
+                        <button class="carousel-nav-btn next" onclick="moveSlide(1, 'pet')">❯</button>
+                        
+                        <div class="carousel-viewport" id="petViewport">
+                            <div class="carousel-track" id="petTrack">
+                                <div class="carousel-slide active">
+                                    <img src="loki.jpeg" alt="Loki, Groom's Side" onerror="handleImageError(this, 'loki')">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="muffy.jpeg" alt="Muffy, Bride's Side" onerror="handleImageError(this, 'muffy')">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-dots" id="petDots">
+                            <span class="dot active" onclick="goToSlide(0, 'pet')"></span>
+                            <span class="dot" onclick="goToSlide(1, 'pet')"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Blessing Card -->
+                <div class="blessing-card">
+                    <p class="blessing-text">
+                        We look forward to your kind presence and seek your blessings for the start of our new journey
+                    </p>
+                    <div class="sanskrit-hymn">
+                        वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>
+                        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Floating WhatsApp Query Button -->
+        <a href="https://wa.me/+917619341530?text=Hi,%20I%20have%20a%20query%20regarding%20the%20wedding." class="whatsapp-float" target="_blank" title="Ask queries on WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.601 2.326zm-5.607 12.1a6.573 6.573 0 0 1-3.349-.914l-.24-.143-2.481.65.66-2.417-.156-.249a6.56 6.56 0 0 1-1.006-3.505c0-3.626 2.955-6.582 6.591-6.582a6.556 6.556 0 0 1 4.666 1.931 6.556 6.556 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.012-.304.087-.403.088-.088.197-.23.296-.345.1-.115.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.808 2.049.098.133 1.394 2.131 3.382 2.992.472.205.84.328 1.127.418.475.152.908.129 1.246.078.38-.057 1.17-.478 1.338-.94.17-.463.17-.86.119-.94-.05-.077-.183-.12-.38-.218z"/>
+            </svg>
+        </a>
+
+        <footer>
+            <p>With Love,</p>
+            <h2>Ritu &amp; Prasang</h2>
+            <p style="font-size: 0.9rem; margin-top: 10px; font-family: 'Plus Jakarta Sans', sans-serif;">#RituWedsPrasang</p>
+            <p style="font-size: 0.85rem; margin-top: 8px; font-family: 'Plus Jakarta Sans', sans-serif; color: #555;">For any queries, feel free to contact: <a href="tel:+917619341530" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">+91 7619341530</a>, or click on the WhatsApp icon</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <<!-- JavaScript Interactions -->
+    <!-- JavaScript Interactions -->
+    <script>
+        let audioUnlocked = false;
+
+        // Unlock audio on the very first touch/click anywhere on the page
+        document.addEventListener('click', () => {
+            unlockAndPlaySplash();
+        }, { once: true });
+
+        document.addEventListener('touchstart', () => {
+            unlockAndPlaySplash();
+        }, { once: true });
+
+        function unlockAndPlaySplash() {
+            if (!audioUnlocked) {
+                const splashAudio = document.getElementById('splashAudio');
+                splashAudio.play().then(() => {
+                    audioUnlocked = true;
+                }).catch(error => {
+                    console.log("Audio play error:", error);
+                });
+            }
+        }
+
+        // Fallback attempt on DOM load
+        window.addEventListener('DOMContentLoaded', () => {
+            const splashAudio = document.getElementById('splashAudio');
+            splashAudio.play().then(() => {
+                audioUnlocked = true;
+            }).catch(error => {
+                console.log("Autoplay waiting for first tap.");
+            });
+        });
+
+        function openInvitation() {
+            const splash = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
+            const splashAudio = document.getElementById('splashAudio');
+            const inviteAudio = document.getElementById('inviteAudio');
+            
+            // 1. Completely stop and reset the splash audio
+            splashAudio.pause();
+            splashAudio.currentTime = 0;
+            splashAudio.src = ""; // Clears the source to prevent any background loops
+
+            // 2. Play the main invitation audio cleanly
+            inviteAudio.currentTime = 0;
+            inviteAudio.play().catch(error => {
+                console.log("Invite audio play error:", error);
+            });
+
+            // 3. Hide splash and reveal invitation
+            splash.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+            mainContent.classList.add('visible');
+            
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 300);
+        }
+
+        // Automatic fallback if image extensions differ
+        function handleImageError(imgElement, imageName) {
+            const currentSrc = imgElement.src;
+            if (currentSrc.endsWith('.jpg')) {
+                imgElement.src = imageName + '.jpeg';
+            } else if (currentSrc.endsWith('.jpeg')) {
+                imgElement.src = imageName + '.png';
+            } else if (currentSrc.endsWith('.png')) {
+                imgElement.src = imageName + '.JPG';
+            }
+        }
+
+        /* Generic Carousel & Synced Title Logic */
+        const carousels = {
+            couple: { current: 0, slides: document.querySelectorAll('#coupleTrack .carousel-slide'), dots: document.querySelectorAll('#coupleDots .dot'), track: document.getElementById('coupleTrack'), viewport: document.getElementById('coupleViewport') },
+            family: { current: 0, slides: document.querySelectorAll('#familyTrack .carousel-slide'), dots: document.querySelectorAll('#familyDots .dot'), track: document.getElementById('familyTrack'), viewport: document.getElementById('familyViewport') },
+            pet: { current: 0, slides: document.querySelectorAll('#petTrack .carousel-slide'), dots: document.querySelectorAll('#petDots .dot'), track: document.getElementById('petTrack'), viewport: document.getElementById('petViewport') }
+        };
+
+        const familyTitles = ["Groom's Side", "Bride's Side"];
+        const petTitles = ["Loki, Groom's Side", "Muffy, Bride's Side"];
+
+        function updateCarousel(name) {
+            const c = carousels[name];
+            const slideWidth = c.slides[0].offsetWidth + 16;
+            c.track.style.transform = `translateX(-${c.current * slideWidth}px)`;
+
+            c.slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === c.current);
+            });
+
+            c.dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === c.current);
+            });
+
+            if (name === 'family') {
+                const subtitle = document.getElementById('familySubtitle');
+                subtitle.style.opacity = 0;
+                setTimeout(() => {
+                    subtitle.textContent = familyTitles[c.current];
+                    subtitle.style.opacity = 1;
+                }, 150);
+            }
+
+            if (name === 'pet') {
+                const subtitle = document.getElementById('petSubtitle');
+                subtitle.style.opacity = 0;
+                setTimeout(() => {
+                    subtitle.textContent = petTitles[c.current];
+                    subtitle.style.opacity = 1;
+                }, 150);
+            }
+        }
+
+        function moveSlide(direction, name) {
+            const c = carousels[name];
+            c.current = (c.current + direction + c.slides.length) % c.slides.length;
+            updateCarousel(name);
+        }
+
+        function goToSlide(index, name) {
+            carousels[name].current = index;
+            updateCarousel(name);
+        }
+
+        /* Touch Swipe Support for Carousels */
+        Object.keys(carousels).forEach(name => {
+            const viewport = carousels[name].viewport;
+            let startX = 0;
+            let endX = 0;
+
+            viewport.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                const threshold = 40;
+                if (startX - endX > threshold) {
+                    moveSlide(1, name);
+                } else if (endX - startX > threshold) {
+                    moveSlide(-1, name);
+                }
+            }, { passive: true });
+        });
+
+        window.addEventListener('resize', () => {
+            updateCarousel('couple');
+            updateCarousel('family');
+            updateCarousel('pet');
+        });
+
+        updateCarousel('couple');
+        updateCarousel('family');
+        updateCarousel('pet');
+    </script>
 </body>
 </html>
